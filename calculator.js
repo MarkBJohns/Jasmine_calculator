@@ -48,10 +48,14 @@ function update() {
 function calculateMonthlyPayment(values) {
   const montlyRate=(values.rate/100)/12;
   const n=Math.floor(values.years*12);
+  if(montlyRate===0){
+    return (values.amount/n).toFixed(2);
+  } else{
   return (
     (montlyRate*values.amount)/
     (1-Math.pow((1+montlyRate), -n))
   ).toFixed(2);
+  }
 }
 
 // Given a string representing the monthly payment value,
